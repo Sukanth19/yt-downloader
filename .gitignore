@@ -14,4 +14,4 @@ backend/downloads/
 
 # OS
 .DS_Store
-*.log
+*.logbackend/cookies.txt
