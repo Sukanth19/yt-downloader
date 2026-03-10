@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>YT Downloader</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Icons from Lucide (lightweight icon lib, no install needed) -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <div class="bg-grid"></div> <!-- subtle background grid decoration -->
+
+  <main class="container">
+
+    <!-- Header -->
+    <header>
+      <div class="logo">
+        <i data-lucide="youtube" class="logo-icon"></i>
+        <span>yt<span class="accent">drop</span></span>
+      </div>
+      <p class="tagline">paste a link. pick a format. done.</p>
+    </header>
+
+    <!-- Main Card -->
+    <section class="card">
+
+      <!-- URL Input -->
+      <div class="input-group">
+        <label for="url-input">YouTube URL</label>
+        <div class="input-wrapper">
+          <i data-lucide="link" class="input-icon"></i>
+          <input
+            type="text"
+            id="url-input"
+            placeholder="https://youtube.com/watch?v=..."
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <button id="preview-btn" class="btn-ghost">
+            <i data-lucide="search"></i>
+            Preview
+          </button>
+        </div>
+      </div>
+
+      <!-- Video Preview (hidden until fetched) -->
+      <div class="preview-box hidden" id="preview-box">
+        <img id="preview-thumb" src="" alt="thumbnail" />
+        <div class="preview-info">
+          <p id="preview-title" class="preview-title"></p>
+          <p id="preview-uploader" class="preview-uploader"></p>
+          <p id="preview-duration" class="preview-duration"></p>
+        </div>
+      </div>
+
+      <!-- Format + Quality Row -->
+      <div class="options-row">
+
+        <div class="option-group">
+          <label>Format</label>
+          <div class="toggle-group">
+            <button class="toggle-btn active" data-value="mp4" id="fmt-mp4">
+              <i data-lucide="video"></i> MP4
+            </button>
+            <button class="toggle-btn" data-value="mp3" id="fmt-mp3">
+              <i data-lucide="music"></i> MP3
+            </button>
+          </div>
+        </div>
+
+        <div class="option-group" id="quality-group">
+          <label>Quality</label>
+          <select id="quality-select">
+            <option value="best">Best</option>
+            <option value="1080">1080p</option>
+            <option value="720">720p</option>
+            <option value="480">480p</option>
+            <option value="360">360p</option>
+          </select>
+        </div>
+
+      </div>
+
+      <!-- Download Button -->
+      <button class="btn-primary" id="download-btn">
+        <i data-lucide="download"></i>
+        <span id="btn-label">Download</span>
+      </button>
+
+      <!-- Status Message -->
+      <div class="status hidden" id="status">
+        <div class="spinner" id="spinner"></div>
+        <span id="status-text"></span>
+      </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>for personal use only &mdash; respect copyright</p>
+    </footer>
+
+  </main>
+
+  <script src="script.js"></script>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

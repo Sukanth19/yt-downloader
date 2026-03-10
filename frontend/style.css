@@ -1,0 +1,373 @@
+/* ─── Vesper Color Palette ─────────────────────────────── */
+:root {
+  --bg:          #101010;
+  --surface:     #1a1a1a;
+  --surface-2:   #222222;
+  --border:      #2a2a2a;
+  --accent:      #e4b974;   /* gold — vesper signature */
+  --accent-dim:  #c49a50;
+  --red:         #cb7676;
+  --text:        #cdd6f4;
+  --text-muted:  #6c6c6c;
+  --text-dim:    #999999;
+  --radius:      12px;
+  --radius-sm:   8px;
+  --transition:  0.2s ease;
+}
+
+/* ─── Reset & Base ──────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 16px; }
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+}
+
+/* ─── Background Grid Decoration ───────────────────────── */
+.bg-grid {
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── Layout ────────────────────────────────────────────── */
+.container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 560px;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* ─── Header ────────────────────────────────────────────── */
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: var(--text);
+}
+
+.logo-icon {
+  color: var(--red);
+  width: 36px;
+  height: 36px;
+}
+
+.accent { color: var(--accent); }
+
+.tagline {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+}
+
+/* ─── Card ──────────────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  box-shadow: 0 0 40px rgba(0,0,0,0.4);
+}
+
+/* ─── Input Group ───────────────────────────────────────── */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0 0.75rem;
+  gap: 0.5rem;
+  transition: border-color var(--transition);
+}
+
+.input-wrapper:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(228, 185, 116, 0.08);
+}
+
+.input-icon {
+  color: var(--text-muted);
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+input[type="text"] {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font-size: 0.9rem;
+  padding: 0.75rem 0;
+  font-family: 'Courier New', monospace;
+}
+
+input::placeholder { color: var(--text-muted); }
+
+/* ─── Ghost Button (inside input) ──────────────────────── */
+.btn-ghost {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-dim);
+  font-size: 0.78rem;
+  padding: 0.3rem 0.65rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+
+.btn-ghost svg { width: 12px; height: 12px; }
+
+.btn-ghost:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ─── Preview Box ───────────────────────────────────────── */
+.preview-box {
+  display: flex;
+  gap: 1rem;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem;
+  align-items: center;
+  animation: fadeIn 0.3s ease;
+}
+
+.preview-box img {
+  width: 110px;
+  height: 65px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.preview-info { display: flex; flex-direction: column; gap: 0.2rem; }
+
+.preview-title {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.3;
+  /* truncate long titles */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.preview-uploader { font-size: 0.78rem; color: var(--accent); }
+.preview-duration  { font-size: 0.75rem; color: var(--text-muted); }
+
+/* ─── Options Row ───────────────────────────────────────── */
+.options-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.option-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+/* Toggle Buttons (MP4 / MP3) */
+.toggle-group {
+  display: flex;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.toggle-btn {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  transition: all var(--transition);
+}
+
+.toggle-btn svg { width: 14px; height: 14px; }
+
+.toggle-btn.active {
+  background: var(--accent);
+  color: #101010;
+  font-weight: 600;
+}
+
+.toggle-btn:not(.active):hover {
+  background: var(--surface);
+  color: var(--text);
+}
+
+/* Quality Select */
+select {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-size: 0.88rem;
+  padding: 0.6rem 0.85rem;
+  outline: none;
+  cursor: pointer;
+  width: 100%;
+  transition: border-color var(--transition);
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236c6c6c' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  padding-right: 2rem;
+}
+
+select:focus { border-color: var(--accent); }
+
+/* ─── Primary Download Button ───────────────────────────── */
+.btn-primary {
+  background: var(--accent);
+  color: #101010;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 0.85rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  transition: all var(--transition);
+  letter-spacing: 0.3px;
+}
+
+.btn-primary svg { width: 18px; height: 18px; }
+
+.btn-primary:hover {
+  background: var(--accent-dim);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(228, 185, 116, 0.25);
+}
+
+.btn-primary:active { transform: translateY(0); }
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ─── Status ────────────────────────────────────────────── */
+.status {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  padding: 0.6rem 0;
+  animation: fadeIn 0.2s ease;
+}
+
+.status.error { color: var(--red); }
+.status.success { color: var(--accent); }
+
+/* Spinner */
+.spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+/* ─── Footer ────────────────────────────────────────────── */
+footer {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+/* ─── Utility ───────────────────────────────────────────── */
+.hidden { display: none !important; }
+
+/* ─── Animations ────────────────────────────────────────── */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Responsive ────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .card { padding: 1.25rem; }
+  .logo { font-size: 1.6rem; }
+  .options-row { flex-direction: column; }
+}
