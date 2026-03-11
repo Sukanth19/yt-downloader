@@ -1,26 +1,53 @@
-# 🎬 YouTube Downloader
+# ytdrop
 
-A YouTube downloader web app built with:
-- **Backend**: Python + FastAPI
-- **Downloader Engine**: yt-dlp
-- **Frontend**: HTML + CSS + JavaScript
+> paste a link. pick a format. done.
 
-## 🚀 How to Run
+---
 
-### 1. Install dependencies
+## Requirements
+
+- Python 3.11+
+- ffmpeg -> `sudo apt install ffmpeg` (Linux) / `brew install ffmpeg` (Mac)
+
+---
+
+## Setup
+
 ```bash
 cd backend
 pip install -r requirements.txt
 ```
 
-### 2. Start the backend
+Drop your `cookies.txt` (exported from browser while logged into YouTube) into the `backend/` folder.
+
+---
+
+## Run
+
 ```bash
-uvicorn main:app --reload
+cd backend
+python -m uvicorn main:app --reload
 ```
 
-### 3. Open the frontend
-Open `frontend/index.html` in your browser (or use Live Server in VSCode)
+Then open `frontend/index.html` in your browser.
 
-## ⚠️ Requirements
-- Python 3.8+
-- ffmpeg installed on your system (`sudo apt install ffmpeg`)
+---
+
+## Project Structure
+
+```
+yt-downloader/
+├── backend/
+│   ├── main.py            # FastAPI app & routes
+│   ├── downloader.py      # yt-dlp download logic
+│   ├── requirements.txt   # Python dependencies
+│   └── cookies.txt        # your YouTube cookies (not committed)
+└── frontend/
+    ├── index.html
+    ├── style.css
+    └── script.js
+```
+
+---
+
+> For personal use only -- respect copyright and YouTube's Terms of Service.

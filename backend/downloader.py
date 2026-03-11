@@ -28,7 +28,7 @@ def get_video_info(url: str) -> dict:
 
 def download_video(url: str, format: str, quality: str) -> str:
     """Download video/audio and return the file path."""
-    output_path = "/tmp/downloads"
+    output_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "downloads")
     os.makedirs(output_path, exist_ok=True)
 
     cookie_file = get_cookie_file()
@@ -36,7 +36,7 @@ def download_video(url: str, format: str, quality: str) -> str:
     opts = {
         "outtmpl": f"{output_path}/%(title)s.%(ext)s",
         "quiet": True,
-        "ffmpeg_location": "/usr/bin/ffmpeg",  # explicit ffmpeg path
+        "extractor_args": {"youtube": {"player_client": ["web"]}},
     }
 
     if cookie_file:
@@ -50,7 +50,6 @@ def download_video(url: str, format: str, quality: str) -> str:
             "preferredquality": "192",
         }]
     else:
-        # Use a single format that doesn't need merging
         if quality == "best":
             opts["format"] = "best"
         else:
